@@ -51,4 +51,13 @@ Wypchnac:
 `docker push image-registry-openshift-image-registry.spx-ocp-c01-9cb7e5637afa55ea707aef0b31c19bc5-0000.eu-de.containers.appdomain.cloud/acse-backend/openjdk:8-jre-alpine`
 
 
+# umozliwienie dzialania kontenerow jako root
+Przejsc do konkretnego projektu:
+
+`oc project acse-backend`
+
+Wykonac komende:
+
+`oc adm policy add-scc-to-user anyuid -z default`
+`securitycontextconstraints.security.openshift.io/anyuid added to: ["system:serviceaccount:acse-backend:default"]`
 
