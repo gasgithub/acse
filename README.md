@@ -21,7 +21,9 @@ image-registry            ClusterIP   172.21.52.235   <none>        5000/TCP    
 image-registry-operator   ClusterIP   None            <none>        60000/TCP   5d19h`
 
 Create a secured route for the image-registry service that uses reencrypt TLS termination. With re-encryption, the router terminates the TLS connection with a certificate, and then re-encrypts the connection to the internal registry with a different certificate. 
+
 `oc create route reencrypt --service=image-registry`
+
 
 `oc get route image-registry
 NAME             HOST/PORT      PATH   SERVICES         PORT       TERMINATION   WILDCARD
@@ -35,7 +37,7 @@ Login via docker
 
 # utworzyć projekt
 
-`oc new-project acse-backend`
+`oc new-project acse-db`
 
 # Wgranie obrazu
 Pociagnac obraz
