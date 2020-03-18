@@ -15,8 +15,9 @@ From the openshift-image-registry project, make sure that the image-registry ser
 `oc project openshift-image-registry`
 Now using project "openshift-image-registry" on server "https://c100-e.eu-de.containers.cloud.ibm.com:30676".
 
-`oc get svc
-NAME                      TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)     AGE
+`oc get svc`
+
+`NAME                      TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)     AGE
 image-registry            ClusterIP   172.21.52.235   <none>        5000/TCP    5d19h
 image-registry-operator   ClusterIP   None            <none>        60000/TCP   5d19h`
 
