@@ -26,8 +26,9 @@ Create a secured route for the image-registry service that uses reencrypt TLS te
 `oc create route reencrypt --service=image-registry`
 
 
-`oc get route image-registry
-NAME             HOST/PORT      PATH   SERVICES         PORT       TERMINATION   WILDCARD
+`oc get route image-registry`
+
+`NAME             HOST/PORT      PATH   SERVICES         PORT       TERMINATION   WILDCARD
 image-registry   image-registry-openshift-image-registry.spx-ocp-c01-9cb7e5637afa55ea707aef0b31c19bc5-0000.eu-de.containers.appdomain.cloud          image-registry   5000-tcp   reencrypt     None`
 
 Edit the route to set the load balancing strategy to source so that the same client IP address reaches the same server, as in a passthrough route setup. You can set the strategy by adding an annotation in the metadata.annotations section: haproxy.router.openshift.io/balance: source.
@@ -58,7 +59,7 @@ Przejsc do konkretnego projektu:
 
 Wykonac komende:
 
-```oc adm policy add-scc-to-user anyuid -z default
+`oc adm policy add-scc-to-user anyuid -z default`
 
-securitycontextconstraints.security.openshift.io/anyuid added to: ["system:serviceaccount:acse-backend:default"]```
+`securitycontextconstraints.security.openshift.io/anyuid added to: ["system:serviceaccount:acse-backend:default"]`
 
