@@ -6,7 +6,7 @@ openshift.withCluster() {
   env.APP_NAME = "${JOB_NAME}".replaceAll(/-build.*/, '')
   echo "Starting Pipeline for ${APP_NAME}..."
   env.BUILD = "${env.NAMESPACE}"
-  //env.DEV = "${APP_NAME}-dev"
+  env.DEV = "${APP_NAME}-dev"
   env.STAGE = "${APP_NAME}-stage"
   env.PROD = "${APP_NAME}-prod"
 }
@@ -34,8 +34,6 @@ pipeline {
         sh """
         env
         mvn -v 
-        cd CustomerOrderServicesProject
-        mvn clean package
         """
       }
     }
@@ -45,14 +43,12 @@ pipeline {
       steps {
         sh """
         mvn -v 
-        cd CustomerOrderServicesProject
-        mvn test
         """
       }
     }
       
     // Build Container Image using the artifacts produced in previous stages
-    stage('Build Liberty App Image'){
+    stage('Build App Image'){
       steps {
         script {
           // Build container image using local Openshift cluster
@@ -60,10 +56,10 @@ pipeline {
             openshift.withProject() {
               timeout (time: 10, unit: 'MINUTES') {
                 // run the build and wait for completion
-                def build = openshift.selector("bc", "${params.APPLICATION_NAME}").startBuild("--from-dir=.")
+                // def build = openshift.selector("bc", "${params.APPLICATION_NAME}").startBuild("--from-dir=.")
                                     
                 // print the build logs
-                build.logs('-f')
+                //build.logs('-f')
               }
             }        
           }
