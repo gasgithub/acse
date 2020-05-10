@@ -1,0 +1,10 @@
+apiVersion: app.ibm.com/v1alpha1
+kind: PlacementRule
+metadata:
+  name: acse-placement-rule
+  namespace: acse-project
+spec:
+  clusterLabels:
+    matchLabels:
+      environment: ST_CORP
+  clusterReplicas: 1
