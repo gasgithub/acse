@@ -1,0 +1,14 @@
+apiVersion: app.k8s.io/v1beta1
+kind: Application
+metadata:
+  labels:
+    app: acse-frontend
+  name: acse-frontend
+  namespace: acse-demo1
+spec:
+  componentKinds:
+  - group: app.ibm.com
+    kind: Subscription
+  selector:
+    matchLabels:
+      acse-frontend:true
