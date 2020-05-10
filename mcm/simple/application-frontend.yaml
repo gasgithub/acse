@@ -4,7 +4,6 @@ metadata:
   labels:
     app: acse-frontend
   name: acse-frontend
-  namespace: acse-demo1
 spec:
   componentKinds:
   - group: app.ibm.com
