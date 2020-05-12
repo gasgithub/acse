@@ -1,0 +1,24 @@
+apiVersion: app.ibm.com/v1alpha1
+kind: Deployable
+metadata:
+  name: route-acse-policy-gui
+  annotations:
+    app.ibm.com/is-local-deployable: "false"
+  labels:
+    app: acse-policy-gui
+spec:
+  template:
+    kind: Route
+    apiVersion: v1
+    metadata:
+      name: acse-policy-gui
+      labels:
+        app: acse-policy-gui
+    spec:
+      host: acse-policy-gui
+      port:
+        targetPort: http
+      to:
+        kind: Service
+        name: policy-gui-service
+        weight: 100
