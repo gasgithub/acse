@@ -3,10 +3,10 @@ kind: Subscription
 metadata:
   name: acse-policy-gui-subscription
   labels:
-    app: acse-policy-gui
+    app: acse
 spec:
   channel: acse-policy-gui-entitlement/acse-policy-gui-channel
   placement:
     placementRef:
-      name: acse-policy-gui--placement-rule
+      name: acse-policy-gui-placement-rule
       kind: PlacementRule
