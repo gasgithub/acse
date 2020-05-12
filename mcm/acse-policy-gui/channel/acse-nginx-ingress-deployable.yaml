@@ -9,7 +9,7 @@ metadata:
 spec:
   template:
     kind: Ingress
-    apiVersion: extensions/v1beta1
+    apiVersion: networking.k8s.io/v1beta1
     name: acse-nginx-ingress
     labels:
       acse-frontend: "true"
