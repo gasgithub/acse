@@ -1,0 +1,23 @@
+apiVersion: app.ibm.com/v1alpha1
+kind: Deployable
+metadata:
+  name: service-acse-policy-gui
+  annotations:
+    app.ibm.com/is-local-deployable: "false"
+  labels:
+    app: acse-policy-gui
+spec:
+  template:
+    kind: Service
+    apiVersion: v1
+    metadata:
+      name: policy-gui-service
+      labels:
+        acse-frontend: "true"
+    spec:
+      selector:
+        app: acse-policy-gui
+      ports:
+        - name: http
+          port: 7000
+          targetPort: 7000    
