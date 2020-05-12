@@ -1,0 +1,24 @@
+apiVersion: app.ibm.com/v1alpha1
+kind: Deployable
+metadata:
+  name: ingress-acse-nginx
+  annotations:
+    app.ibm.com/is-local-deployable: "false"
+  labels:
+    app: acse-policy-gui
+spec:
+  template:
+    kind: Ingress
+    apiVersion: extensions/v1beta1
+    name: acse-nginx-ingress
+    labels:
+      acse-frontend: "true"
+    spec:
+      rules:
+      - host: acse-test.spx-ocp-c01-9cb7e5637afa55ea707aef0b31c19bc5-0000.eu-de.containers.appdomain.cloud
+        http:
+          paths:
+          - path: /
+            backend:
+              serviceName: nginx-service
+              servicePort: http    
