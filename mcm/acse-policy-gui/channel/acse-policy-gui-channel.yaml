@@ -1,0 +1,13 @@
+apiVersion: app.ibm.com/v1alpha1
+kind: Channel
+metadata:
+  name: acse-policy-gui-channel
+  namespace: acse-policy-gui-entitlement
+  labels:
+    app: acse-policy-gui
+    subApp: greetings-channel
+spec:
+  type: Namespace
+  pathname: acse-policy-gui-entitlement
+  sourceNamespaces:
+    - acse-policy-gui-entitlement
