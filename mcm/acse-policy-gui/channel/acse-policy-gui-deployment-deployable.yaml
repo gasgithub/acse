@@ -1,0 +1,56 @@
+apiVersion: app.ibm.com/v1alpha1
+kind: Deployable
+metadata:
+  name: deployment-acse-policy-gui
+  namespace: acse-policy-gui-entitlement
+  annotations:
+    app.ibm.com/is-local-deployable: "false"
+  labels:
+    app: acse-policy-gui
+spec:
+  template:
+    kind: Deployment
+    apiVersion: apps/v1
+    metadata:
+      name: acse-policy-gui-deployment
+      labels:
+        acse-frontend: "true"
+    spec:
+      selector:
+        matchLabels:
+          app: acse-policy-gui
+      replicas: 1
+      template:
+        metadata:
+          labels:
+            app: acse-policy-gui        
+        spec:
+          containers:
+          - name: acse-policy-gui
+            image: image-registry.openshift-image-registry.svc:5000/acse/acse-policy-gui
+            ports:
+            - containerPort: 7000
+            env:
+            - name: TZ
+              value: "Europe/Warsaw"
+            resources:
+              limits:
+                cpu: "500m"
+                memory: "32Mi"
+              requests:
+                cpu: "50m"
+                memory: "16Mi"
+            livenessProbe:
+              httpGet:
+                path: /
+                port: 7000
+              initialDelaySeconds: 60
+              periodSeconds: 30
+              failureThreshold: 10
+            readinessProbe:
+              httpGet:
+                path: /
+                port: 7000
+              initialDelaySeconds: 10
+              periodSeconds: 10
+
