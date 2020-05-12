@@ -1,0 +1,55 @@
+apiVersion: app.ibm.com/v1alpha1
+kind: Deployable
+metadata:
+  name: deployment-acse-nginx
+  namespace: acse-policy-gui-entitlement
+  annotations:
+    app.ibm.com/is-local-deployable: "false"
+  labels:
+    app: acse-nginx
+spec:
+  template:
+    kind: Deployment
+    apiVersion: apps/v1
+    metadata:
+      name: acse-nginx-deployment
+      labels:
+        acse-frontend: "true"
+    spec:
+      selector:
+        matchLabels:
+          app: acse-nginx
+      replicas: 1
+      template:
+        metadata:
+          labels:
+            app: acse-nginx
+        spec:
+          containers:
+          - name: acse-nginx
+            image: image-registry.openshift-image-registry.svc:5000/acse/acse-nginx-product-catalog
+            ports:
+            - containerPort: 9080
+            env:
+            - name: TZ
+              value: "Europe/Warsaw"
+            resources:
+              limits:
+                cpu: "500m"
+                memory: "32Mi"
+              requests:
+                cpu: "50m"
+                memory: "16Mi"
+            livenessProbe:
+              httpGet:
+                path: /
+                port: 9080
+              initialDelaySeconds: 60
+              periodSeconds: 30
+              failureThreshold: 10
+            readinessProbe:
+              httpGet:
+                path: /
+                port: 9080
+              initialDelaySeconds: 10
+              periodSeconds: 10    
