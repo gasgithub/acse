@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Namespace
+metadata: 
+  name: acse-policy-gui-project
+
+---
+apiVersion: v1
+kind: Namespace
+metadata: 
+  name: acse-policy-gui-entitlement
