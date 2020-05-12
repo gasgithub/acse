@@ -9,7 +9,7 @@ metadata:
 spec:
   template:
     kind: Route
-    apiVersion: v1
+    apiVersion: route.openshift.io/v1
     metadata:
       name: acse-policy-gui
       labels:
