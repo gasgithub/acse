@@ -15,7 +15,6 @@ spec:
       labels:
         app: acse-policy-gui
     spec:
-      host: acse-policy-gui
       port:
         targetPort: http
       to:
