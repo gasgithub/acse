@@ -1,0 +1,26 @@
+apiVersion: app.ibm.com/v1alpha1
+kind: Subscription
+metadata:
+  labels:
+    app: acse-subscription
+  name: acse-frontend-subscription
+spec:
+  channel: acse-entitlement/ibm-local-charts
+  name: acse-frontend
+  placement:
+    placementRef:
+      kind: PlacementRule
+      name: acse-placement-rule
+  packageFilter:
+    labelSelector:
+      matchExpressions:
+      - key: name
+        operator: In
+        values:
+        - acse-fronted
+  packageOverrides:
+  - packageName: acse-frontend
+    packageOverrides:
+    - path: spec.values
+      value: |
+        dockerRegistry: "image-registry.openshift-image-registry.svc:5000/acse"
